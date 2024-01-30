@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class=" d-flex justify-content-between">
+    <h2>Listado de Tickets</h2>
+    <a href="@Url.Action("Nuevo","Ticket")"><i class="bi bi-plus-circle-fill" style="font-size: 2.5rem; color: cornflowerblue;" ></i></a>
+    @*<i class="bi bi-whatsapp" style="color:green; font-size: 2.5rem"></i>*@
+</div>
+
+<hr />  
+
+<table class=" table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <td># Ticket</td>
+            <td>Fecha</td>
+            <td>Estado</td>
+            <td>Usuario</td>
+            <td>Responsable</td>
+        </tr>
+    </thead>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+
+

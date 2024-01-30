@@ -1,0 +1,42 @@
+﻿@model Ticket
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<div class="d-flex justify-content-between">
+    <h2>Nuevo Ticket</h2>
+    <a href="@Url.Action("Index","Ticket")"><i class="bi bi-arrow-left-circle-fill" style="font-size:2.5rem; color:forestgreen"></i></a>
+</div>
+
+<hr />
+
+@*---- Agregamos formulario utilizando Razor ----*@
+@*Esto nos ahorra poner la etiqueta form, incluye validaciones*@
+
+@using (Html.BeginForm("Nuevo", "Ticket", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">Fecha Generación</label>
+        @Html.TextBoxFor(x => x.FechaGeneracion, new { @class = "form-control" })
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Estado</label>
+        @Html.TextBoxFor(x=>x.IdEstado, new {@class="form-control"})
+    </div>
+    <div class="mb-5">
+        <label class="form-label">Usuario</label>
+        @Html.TextBoxFor(x=>x.IdUsuario, new {@class="form-control"})
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripcion</label>
+        @Html.TextBoxFor(x=>x.Descripcion, new {@class="form-control"})
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Responsable</label>
+        @Html.TextBoxFor(x=>x.IdResponsable, new {@class="form-control"})
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Solucion</label>
+        @Html.TextBoxFor(x=>x.Solucion, new {@class="form-control"})
+    </div>
+}
