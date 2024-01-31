@@ -1,4 +1,5 @@
-﻿@model Ticket
+﻿@*como necesito ver mas de un modelo en el form me traigo el viewMels*@
+@model TicketViewModel
 @{
     ViewBag.Title = "Nuevo";
 }
@@ -17,26 +18,48 @@
 {
     <div class="mb-3">
         <label class="form-label">Fecha Generación</label>
-        @Html.TextBoxFor(x => x.Fecha, new { @class = "form-control" })
+        @Html.TextBoxFor(x => x.Ticket.Fecha, new { @class = "form-control", @required="required", @type="date" })
     </div>
     <div class="mb-3">
         <label class="form-label">Estado</label>
-        @Html.TextBoxFor(x=>x.IdEstado, new {@class="form-control"})
+
+        <select name="Ticket.IdEstado" class="form-control" required >
+            <option value="" >Seleccione...</option>
+            @foreach (var estado in Model.Estados)
+            {
+                <option value="@estado.Id">@estado.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdEstado, new {@class="form-control", @required="required"})*@
     </div>
     <div class="mb-5">
         <label class="form-label">Usuario</label>
-        @Html.TextBoxFor(x=>x.IdUsuario, new {@class="form-control"})
+        <select name="Ticket.IdUsuario" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id">@usuario.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdUsuario, new {@class="form-control", @required="required"})*@
     </div>
     <div class="mb-3">
         <label class="form-label">Descripcion</label>
-        @Html.TextBoxFor(x=>x.Descripcion, new {@class="form-control"})
+        @Html.TextBoxFor(x=>x.Ticket.Descripcion, new {@class="form-control", @required="required"})
     </div>
     <div class="mb-3">
         <label class="form-label">Responsable</label>
-        @Html.TextBoxFor(x=>x.IdResponsable, new {@class="form-control"})
+        <select name="Ticket.IdResponsable" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var responsable in Model.Responsables)
+            {
+                <option value="@responsable.Id">@responsable.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdResponsable, new {@class="form-control", @required="required"})*@
     </div>
+    
     <div class="mb-3">
-        <label class="form-label">Solucion</label>
-        @Html.TextBoxFor(x=>x.Solucion, new {@class="form-control"})
+       <input type="submit" value="Guardar" class="btn btn-success" />        
     </div>
 }
