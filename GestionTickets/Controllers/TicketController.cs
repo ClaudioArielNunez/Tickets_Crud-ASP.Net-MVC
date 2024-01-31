@@ -1,4 +1,5 @@
 ﻿using GestionTickets.Models;
+using GestionTickets.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,7 +25,19 @@ namespace GestionTickets.Controllers
         //  Get lista la pagina, Post procesa la info
         public ActionResult Nuevo()
         {
-            return View();
+            var viewModel = new TicketViewModel();
+            viewModel.Responsables = contex.Responsable.ToList();
+            viewModel.Estados = contex.Estado.ToList();
+            viewModel.Usuarios = contex.Usuario.ToList();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Nuevo(Ticket ticket)
+        {
+            contex.Ticket.Add(ticket);
+            contex.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
