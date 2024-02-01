@@ -26,10 +26,10 @@
         @foreach (var ticket in Model)
         {
             <tr>
-                <td>
-                    <a href="#">Actualizar</a>
-                    <a>Eliminar</a>
-                    <a>Ver</a>
+                <td style="width:50px">
+                    <a href="@Url.Action("Detalle","Ticket")" title="Ver Detalle" style="color:blue"><i class="bi bi-search"></i></a>
+                    <a href="@Url.Action("Actualizar","Ticket")" title="Actualizar" style="color:green"><i class="bi bi-pencil-square"></i></a>
+                    <a href="@Url.Action("Delete", "Ticket")" title="Eliminar"><i class="bi bi-trash-fill" style="color:red"></i></a>
                 </td>
                 <td>@ticket.Id</td>
                 <td>@ticket.Fecha</td>
