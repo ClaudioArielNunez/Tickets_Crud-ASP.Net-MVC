@@ -1,7 +1,71 @@
-﻿
+﻿@model TicketViewModel
 @{
     ViewBag.Title = "Actualizar";
 }
 
-<h2>Actualizar</h2>
 
+
+
+<div class="d-flex justify-content-between">
+    <h2>Actualizar Ticket</h2>
+    <a href="@Url.Action("Index","Ticket")"><i class="bi bi-arrow-left-circle-fill" style="font-size:2.5rem; color:forestgreen"></i></a>
+</div>
+
+<hr />
+
+@*---- Agregamos formulario utilizando Razor ----*@
+@*Esto nos ahorra poner la etiqueta form, incluye validaciones*@
+
+@using (Html.BeginForm("Actualizar", "Ticket", FormMethod.Post))
+{   //Necesitamos el id en el metodo actualizar
+    <div class="mb-3">
+        <label class="form-label">Id</label>
+        @Html.TextBoxFor(x=>x.Ticket.Id, new {@class="form-control", @required="required", @readonly="readonly"})
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha Generación</label>
+        @Html.TextBoxFor(x => x.Ticket.Fecha, new { @class = "form-control", @required = "required"})@*no lleva type=date*@
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Estado</label>
+
+        <select name="Ticket.IdEstado" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var estado in Model.Estados)
+            {                                /*expresion lambda*/
+                <option value="@estado.Id" @(estado.Id==Model.Ticket.IdEstado? "selected":"") >@estado.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdEstado, new {@class="form-control", @required="required"})*@
+    </div>
+    <div class="mb-5">
+        <label class="form-label">Usuario</label>
+        <select name="Ticket.IdUsuario" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <option value="@usuario.Id" @(usuario.Id==Model.Ticket.IdUsuario? "selected":"") >@usuario.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdUsuario, new {@class="form-control", @required="required"})*@
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Descripcion</label>
+        @Html.TextAreaFor(x => x.Ticket.Descripcion, new { @class = "form-control", @required = "required" })
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Responsable</label>
+        <select name="Ticket.IdResponsable" class="form-control" required>
+            <option value="">Seleccione...</option>
+            @foreach (var responsable in Model.Responsables)
+            {
+                <option value="@responsable.Id" @(responsable.Id==Model.Ticket.IdResponsable? "selected":"") >@responsable.Nombre</option>
+            }
+        </select>
+        @*@Html.TextBoxFor(x=>x.Ticket.IdResponsable, new {@class="form-control", @required="required"})*@
+    </div>
+
+    <div class="mb-3">
+        <input type="submit" value="Guardar" class="btn btn-success" />
+    </div>
+}

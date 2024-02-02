@@ -50,14 +50,22 @@ namespace GestionTickets.Controllers
 
         [HttpGet]
         public ActionResult Actualizar(int id)
-        {
-            var ticket = contex.Ticket.FirstOrDefault(x => x.Id == id);
-            return View();
+        {    //Primeras lineas igual a vista detalle
+            var viewModel = new TicketViewModel();
+            viewModel.Ticket = contex.Ticket.FirstOrDefault(x=>x.Id==id);
+            //Cargamos los datos desplegables
+            viewModel.Responsables = contex.Responsable.ToList();
+            viewModel.Usuarios = contex.Usuario.ToList();
+            viewModel.Estados = contex.Estado.ToList();            
+            return View(viewModel);
         }
 
         [HttpPost]
         public ActionResult Actualizar(Ticket ticket)
         {
+            //1º forma
+            contex.Entry(ticket).State=System.Data.Entity.EntityState.Modified;
+            contex.SaveChanges();
             return RedirectToAction("Index");
         }
 
