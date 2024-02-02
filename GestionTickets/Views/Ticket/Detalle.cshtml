@@ -1,0 +1,50 @@
+﻿@model TicketViewModel
+@{
+    ViewBag.Title = "Detalle Ticket";
+}
+<div class="d-flex justify-content-between">
+    <h2>Detalle del Ticket</h2>
+    <a href="@Url.Action("Index","Ticket")"><i class="bi bi-arrow-left-circle-fill" style="font-size: 2.5rem; color: forestgreen;"></i></a>
+</div>
+<hr />
+    @*la etiqueta label no funciona para mostrar los datos, ponemos directamente el model*@
+<div class="mb-3">
+    <label class="form-label">Id: </label>
+    @Model.Ticket.Id
+</div>
+
+<div class="mb-3 ">
+    <label class="form-label">Fecha: </label>
+    @Model.Ticket.Fecha
+    @*@Html.LabelFor(x=>x.Ticket.Fecha, new {@class="form-control"})*@
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Estado: </label>
+    @Model.Ticket.Estado.Nombre
+    @*@Html.LabelFor(x => x.Ticket.Estado.Nombre, new { @class = "form-control" })*@
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Usuario: </label>
+    @Model.Ticket.Usuario.Nombre
+    @*@Html.LabelFor(x => x.Ticket.Usuario.Nombre, new { @class = "form-control" })*@
+</div>
+<div class="mb-3">
+    <label class="form-label">Descripción: </label>
+    @Model.Ticket.Descripcion 
+    @*@Html.LabelFor(x => x.Ticket.Descripcion, new { @class = "form-control" })*@
+</div>
+<div class="mb-3">
+    <label class="form-label">Responsable: </label>
+    @Model.Ticket.Responsable.Nombre
+    @*@Html.LabelFor(x => x.Ticket.Responsable.Nombre, new { @class = "form-control" })*@
+</div>
+
+<div class="mb-3">
+    <input type="button" value="Solucionar" class="btn btn-success" />
+</div>
+
+
+
+

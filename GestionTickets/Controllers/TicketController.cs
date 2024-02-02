@@ -39,5 +39,36 @@ namespace GestionTickets.Controllers
             contex.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Detalle(int id)
+        {     //Espera un viewModel no un Modelo Ticket       
+            var viewModel = new TicketViewModel();
+            viewModel.Ticket = contex.Ticket.FirstOrDefault(x=>x.Id==id);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult Actualizar(int id)
+        {
+            var ticket = contex.Ticket.FirstOrDefault(x => x.Id == id);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Actualizar(Ticket ticket)
+        {
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+
+        public ActionResult Delete(int id)
+        {
+            Ticket ticket = contex.Ticket.FirstOrDefault(x=>x.Id == id);
+            contex.Ticket.Remove(ticket);
+            contex.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
