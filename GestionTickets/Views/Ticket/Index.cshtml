@@ -46,8 +46,8 @@
 
 <!-- Button trigger modal -->
 @*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>*@
+        Launch demo modal
+    </button>*@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,8 +70,8 @@
 </div>
 <input type="hidden" value="" id="idTicket" />
 
-
-<script>
+@section Scripts{   
+    <script>
     function deleteTicket() {
         let url = '@Url.Action("Delete","Ticket")';
         url = url + '/' + $("#idTicket").val();
@@ -82,6 +82,8 @@
         $("#idTicket").val(id);
         /*alert(id);*/
     }
-</script>
+    </script>
+    }
+
 
 

@@ -23,8 +23,9 @@
                         <a class="nav-link" href="@Url.Action("Index","Ticket")">Tickets</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                @*method="get" action="@Url.Action("Detalle", "Ticket")" name="id"*@
+                <form class="d-flex" method="get" action="@Url.Action("Detalle","Ticket")" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Ingrese ID Ticket" name="id" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>
                 </form>
             </div>
@@ -36,5 +37,8 @@
     @*para que funcione el modal cargamos el jquery*@
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    
+    @*para que el codigo js se ejecute solo donde lo piden, false=no es requerido en todas las paginas*@
+    @RenderSection("Scripts",false)
 </body>
 </html>
