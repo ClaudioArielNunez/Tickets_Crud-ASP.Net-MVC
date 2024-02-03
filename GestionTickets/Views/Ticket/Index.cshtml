@@ -5,13 +5,13 @@
 
 <div class=" d-flex justify-content-between">
     <h2>Listado de Tickets</h2>
-    <a href="@Url.Action("Nuevo","Ticket")"><i class="bi bi-plus-circle-fill" style="font-size: 2.5rem; color: cornflowerblue;" ></i></a>
+    <a href="@Url.Action("Nuevo","Ticket")"><i class="bi bi-plus-circle-fill" style="font-size: 2.5rem; color: cornflowerblue;"></i></a>
     @*<i class="bi bi-whatsapp" style="color:green; font-size: 2.5rem"></i>*@
 </div>
 
-<hr />  
+<hr />
 
-<table class=" table table-bordered table-hover" >
+<table class=" table table-bordered table-hover">
     <thead>
         <tr>
             <td>Acciones</td>
@@ -29,7 +29,9 @@
                 <td style="width:50px">
                     <a href="@Url.Action("Detalle","Ticket",new {id=ticket.Id})" title="Ver Detalle" style="color:blue"><i class="bi bi-search"></i></a>
                     <a href="@Url.Action("Actualizar","Ticket", new {id=@ticket.Id})" title="Actualizar" style="color:green"><i class="bi bi-pencil-square"></i></a>
-                    <a href="@Url.Action("Delete", "Ticket", new { id = @ticket.Id })" title="Eliminar"><i class="bi bi-trash-fill" style="color:red"></i></a>
+                    @*<a href="@Url.Action("Delete", "Ticket", new { id = @ticket.Id })" title="Eliminar"><i class="bi bi-trash-fill" style="color:red"></i></a>*@
+                    <a href="javascript:void(0)" onclick="getId(@ticket.Id)" data-bs-toggle="modal" data-bs-target="#exampleModal" title="Eliminar"><i class="bi bi-trash-fill" style="color:red"></i></a>
+                    @*Esta linea: javascript:void(0) evita el # en la url y evita el scrol hacia arriba*@
                 </td>
                 <td>@ticket.Id</td>
                 <td>@ticket.Fecha</td>
@@ -41,5 +43,45 @@
 
     </tbody>
 </table>
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>*@
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmación</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro de eliminar el ticket?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                @*ponemos el evento*@
+                <button type="button" onclick="deleteTicket()" class="btn btn-primary">Sí, estoy seguro</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="" id="idTicket" />
+
+
+<script>
+    function deleteTicket() {
+        let url = '@Url.Action("Delete","Ticket")';
+        url = url + '/' + $("#idTicket").val();
+        window.location.href = url;
+    }
+
+    function getId(id) {
+        $("#idTicket").val(id);
+        /*alert(id);*/
+    }
+</script>
 
 

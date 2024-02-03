@@ -63,7 +63,7 @@ namespace GestionTickets.Controllers
         [HttpPost]
         public ActionResult Actualizar(Ticket ticket)
         {
-            //1º forma
+            
             contex.Entry(ticket).State=System.Data.Entity.EntityState.Modified;
             contex.SaveChanges();
             return RedirectToAction("Index");
